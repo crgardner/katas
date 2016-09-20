@@ -1,5 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 project.buildDir = 'target'
@@ -19,3 +22,20 @@ eclipse {
     }
 }
 
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${project.buildDir}/reports/jacoco"
+    }
+}
+
+test {
+    jacoco {
+        enabled = true
+    }
+}
